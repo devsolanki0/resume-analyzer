@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h1>🚀 AI Resume Analyzer</h1>
+        <p class="subtitle">Check ATS Score & Job Match Instantly</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <div class="input-group">
+                <label>Upload Resume (PDF)</label>
+                <input type="file" name="resume" required>
+            </div>
+
+            <div class="input-group">
+                <label>Paste Job Description</label>
+                <textarea name="job_description" placeholder="Paste Job Description Here..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn">Analyze Resume</button>
+        </form>
+
+        {% if match_score %}
+        <div class="results">
+            <div class="score-box">
+                <h2>Job Match</h2>
+                <div class="circle" data-value="{{ match_score }}">
+                    <span>{{ match_score }}%</span>
+                </div>
+            </div>
+
+            <div class="score-box">
+                <h2>ATS Score</h2>
+                <div class="circle" data-value="{{ ats_score }}">
+                    <span>{{ ats_score }}%</span>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
